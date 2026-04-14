@@ -70,11 +70,8 @@ while True:
     if is_draw():
         print("It's a draw!")
         break
-<<<<<<< HEAD:NOTcheatingat-tictactoe
 
     player_turn("2")
     if has_won():
         print("Player 2 wins!")
         break
-=======
->>>>>>> bf5b909d3114eb2d819ca84c8d698d7e2dc3fd52:NOTcheatingat-tictactoe-Chris.py
