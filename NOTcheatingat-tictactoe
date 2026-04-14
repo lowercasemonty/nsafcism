@@ -1,1 +1,52 @@
+board = [[0,0,0], [0,0,0], [0,0,0]]
 
+def print_board():
+    for i in range(0,3):
+        for j in range(0,3):
+            print(board[i][j], end=" ")
+        print()
+
+# Player 1 Turn (X)
+def player1():
+    while True:
+        
+        # Find position player wants to play in
+        down = int(input("Player 1, enter down position (0-2): "))
+        across = int(input("          enter across position (0-2): "))
+        
+        # Check if space is taken...
+        if board[down][across] != 0:
+            print("Space is taken, please choose a different space.")
+        
+        # otherwise play there
+        if board[down][across] == 0:
+            board[down][across] = "X"
+        
+        print_board()
+        return
+
+# Player 2 Turn (O)
+def player2():
+    # Find position player wants to play in
+    down = int(input("Player 2, enter down position (0-2): "))
+    across = int(input("          enter across position (0-2): "))
+        
+    while True:
+        
+        # Check if space is taken...
+        if board[down][across] != 0:
+            print("Space is taken, please choose a different space.")
+        
+        # otherwise play there
+        if board[down][across] == 0:
+            board[down][across] = "O"
+        
+        print_board()
+        return
+
+# Start Gameplay loop
+
+print_board()
+while True:
+    player1()
+    player2()
