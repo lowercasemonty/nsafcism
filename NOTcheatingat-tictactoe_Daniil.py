@@ -16,34 +16,39 @@ def action(player):
         if board[down][across] != "□":
             print("This spot is taken")
             continue
-        if player == 1:
+        if player == "X":
             board[down][across] = "X"
         else:
             board[down][across] = "O"
         break
+    check_win(player)
 
 #Win Condition
-def check_win():
-    for i in range (2):
+def check_win(player):
+    global win
+    global winner
+    for i in range(3):
         #Row Check
-        for j in range(3):
-            if board[i][j] == board[i+1][j] and board[i][j] != "□":
-                win = True
-                return win
+        if board[i][0] == board[i][1] == board[i][2] == (player):
+            win = True
+            winner = player
         #Column Check
-        for j in range(3):
-            if board[j][i] == board[j][i+1] and board[j][i] != "□":
-                win = True
-                return win
-
+        if board[0][i] == board[1][i] == board[2][i] == (player):
+            win = True
+            winner = player 
+    #Diagonal Check
+    if board[0][0] == board[1][1] == board[2][2] == (player):
+        win = True
+        winner = player
+    if board[0][2] == board[1][1] == board[2][0] == (player):
+        win = True
+        winner = player
 
 #Game Loop
 while win == False:
     display_board()
-    action(1)
-    check_win()
+    action("X")
     display_board()
-    action(2)
-    check_win()
+    action("O")
 
-print("End")
+print(f"Player {winner} wins!")
