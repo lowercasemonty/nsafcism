@@ -1,18 +1,44 @@
 board = [[0,0,0], [0,0,0], [0,0,0]]
 
+def is_draw():
+    for row in board:
+        if 0 in row:
+            return False
+    return True
+
 def print_board():
-    for i in range(0,3):
-        for j in range(0,3):
+    for i in range(3):
+        for j in range(3):
             print(board[i][j], end=" ")
         print()
 
+def has_won():
+    # Check rows
+    for row in range(3):
+        # if, in a given list(row) within the list(board), all 3 values equal each other (and not 0), return True
+        if board[row][0] == board[row][1] == board[row][2] != 0:
+            return True
+        
+    # Check columns
+    for col in range(3):
+        if board[0][col] == board[1][col] == board[2][col] != 0:
+            return True
+        
+    # Check diagonals
+    if board[0][0] == board[1][1] == board[2][2] != 0:
+        return True
+    if board[0][2] == board[1][1] == board[2][0] != 0:
+        return True
+    
+    return False
+
 # Player 1 Turn (X)
 def player1():
+    # Find position player wants to play in
+    down = int(input("Player 1, enter down position (0-2): "))
+    across = int(input("          enter across position (0-2): "))
+    
     while True:
-        
-        # Find position player wants to play in
-        down = int(input("Player 1, enter down position (0-2): "))
-        across = int(input("          enter across position (0-2): "))
         
         # Check if space is taken...
         if board[down][across] != 0:
@@ -21,16 +47,15 @@ def player1():
         # otherwise play there
         if board[down][across] == 0:
             board[down][across] = "X"
-        
-        print_board()
-        return
+            print_board()
+            return
 
 # Player 2 Turn (O)
 def player2():
     # Find position player wants to play in
     down = int(input("Player 2, enter down position (0-2): "))
     across = int(input("          enter across position (0-2): "))
-        
+    
     while True:
         
         # Check if space is taken...
@@ -40,13 +65,22 @@ def player2():
         # otherwise play there
         if board[down][across] == 0:
             board[down][across] = "O"
-        
-        print_board()
-        return
+            print_board()
+            return
 
 # Start Gameplay loop
 
 print_board()
 while True:
     player1()
+    if has_won():
+        print("Player 1 wins!")
+        break
+
     player2()
+    if has_won():
+        print("Player 2 wins!")
+        break
+    if is_draw():
+        print("It's a draw!")
+        break
