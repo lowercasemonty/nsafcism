@@ -1,5 +1,17 @@
 board = [[0,0,0], [0,0,0], [0,0,0]]
 
+def move():
+    down = int(input(f"Player {player_no}, enter down position (0-2): "))
+    while down != 0 and down != 1 and down != 2:
+        print("Please choose a valid position on the board")
+        down = int(input(f"Player {player_no}, enter down position (0-2): "))
+    
+    across = int(input("          enter across position (0-2): "))
+    while across != 0 and across != 1 and across != 2:
+        print("Please choose a valid position on the board")
+        across = int(input(f"Player {player_no}, enter across position (0-2): "))
+    return down, across
+
 def is_draw():
     for row in board:
         if 0 in row:
@@ -7,10 +19,11 @@ def is_draw():
     return True
 
 def print_board():
+    print("Current Board: \n-----------------")
     for i in range(3):
         for j in range(3):
-            print(board[i][j], end=" ")
-        print()
+            print("|", board[i][j], end=" | ")
+        print("\n-----------------")
 
 def has_won():
     # Check rows
@@ -34,39 +47,34 @@ def has_won():
 
 # Player 1 Turn (X)
 def player1():
+    global player_no
+    player_no = 1
     # Find position player wants to play in
-    down = int(input("Player 1, enter down position (0-2): "))
-    across = int(input("          enter across position (0-2): "))
+    down, across = move()
     
-    while True:
-        
-        # Check if space is taken...
-        if board[down][across] != 0:
-            print("Space is taken, please choose a different space.")
-        
-        # otherwise play there
-        if board[down][across] == 0:
-            board[down][across] = "X"
-            print_board()
-            return
+    # Find out if the space is taken, 
+    # if so, ask for new input until they choose an open space, 
+    # otherwise, play there
+    while board[down][across] != 0:
+        print("Space is taken, please choose a different space.")
+        down, across = move()
+    board[down][across] = "X"
+    print_board()
 
-# Player 2 Turn (O)
 def player2():
-    # Find position player wants to play in
-    down = int(input("Player 2, enter down position (0-2): "))
-    across = int(input("          enter across position (0-2): "))
+    global player_no
+    player_no = 2
+    # Find position player wants to play in, if it is not between 0 and 2, ask for new input until they choose a valid position
+    down, across = move()
     
-    while True:
-        
-        # Check if space is taken...
-        if board[down][across] != 0:
-            print("Space is taken, please choose a different space.")
-        
-        # otherwise play there
-        if board[down][across] == 0:
-            board[down][across] = "O"
-            print_board()
-            return
+    # Find out if the space is taken, 
+    # if so, ask for new input until they choose an open space, 
+    # otherwise, play there
+    while board[down][across] != 0:
+        print("Space is taken, please choose a different space.")
+        down, across = move()
+    board[down][across] = "O"
+    print_board()
 
 # Start Gameplay loop
 
