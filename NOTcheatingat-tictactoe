@@ -1,6 +1,7 @@
 board = [[0,0,0], [0,0,0], [0,0,0]]
+player_no = "1"
 
-def move():
+def move(player_no):
     down = int(input(f"Player {player_no}, enter down position (0-2): "))
     while down != 0 and down != 1 and down != 2:
         print("Please choose a valid position on the board")
@@ -45,50 +46,32 @@ def has_won():
     
     return False
 
-# Player 1 Turn (X)
-def player1():
-    global player_no
-    player_no = 1
-    # Find position player wants to play in
-    down, across = move()
-    
-    # Find out if the space is taken, 
-    # if so, ask for new input until they choose an open space, 
-    # otherwise, play there
+def player_turn(player_no):
+    down, across = move(player_no)
     while board[down][across] != 0:
         print("Space is taken, please choose a different space.")
-        down, across = move()
-    board[down][across] = "X"
-    print_board()
-
-def player2():
-    global player_no
-    player_no = 2
-    # Find position player wants to play in, if it is not between 0 and 2, ask for new input until they choose a valid position
-    down, across = move()
-    
-    # Find out if the space is taken, 
-    # if so, ask for new input until they choose an open space, 
-    # otherwise, play there
-    while board[down][across] != 0:
-        print("Space is taken, please choose a different space.")
-        down, across = move()
-    board[down][across] = "O"
+        down, across = move(player_no)
+    if player_no == "1":
+        board[down][across] = "X"
+    if player_no == "2":
+        board[down][across] = "O"
     print_board()
 
 # Start Gameplay loop
 
 print_board()
 while True:
-    player1()
+    player_turn("1")
     if has_won():
         print("Player 1 wins!")
         break
-
-    player2()
-    if has_won():
-        print("Player 2 wins!")
-        break
+    
+    # Check if its a draw (only have to after player 1 turn because theres odd spaces to play on)
     if is_draw():
         print("It's a draw!")
+        break
+
+    player_turn("2")
+    if has_won():
+        print("Player 2 wins!")
         break
