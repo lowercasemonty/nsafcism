@@ -1,5 +1,35 @@
+# Constants
 board = [[0,0,0], [0,0,0], [0,0,0]]
 player_no = "1"
+
+# Functions
+
+# Function to print the current state of the board in a nice format
+
+def print_board():
+    print("Current Board: \n-----------------")
+    for i in range(3):
+        for j in range(3):
+            print("|", board[i][j], end=" | ")
+        print("\n-----------------")
+        
+
+# Function to handle a player's turn by getting their move, validating that the space is not already taken, 
+# and updating the board with their symbol (X for player 1 and O for player 2)
+
+def player_turn(player_no):
+    down, across = move(player_no)
+    while board[down][across] != 0:
+        print("Space is taken, please choose a different space.")
+        down, across = move(player_no)
+    if player_no == "1":
+        board[down][across] = "X"
+    if player_no == "2":
+        board[down][across] = "O"
+    print_board()
+
+# Function to get player move and validate input
+# This function will loop until the player inputs a valid coordinate on the board (0-2 for both down and across)
 
 def move(player_no):
     print(f"Player {player_no} turn:")
@@ -22,18 +52,7 @@ def move(player_no):
             continue
     return down, across
 
-def is_draw():
-    for row in board:
-        if 0 in row:
-            return False
-    return True
-
-def print_board():
-    print("Current Board: \n-----------------")
-    for i in range(3):
-        for j in range(3):
-            print("|", board[i][j], end=" | ")
-        print("\n-----------------")
+# Function to check if a player has won by checking all rows, columns, and diagonals for three of the same non-zero symbol (X or O)
 
 def has_won():
     # Check rows
@@ -54,18 +73,17 @@ def has_won():
     
     return False
 
-def player_turn(player_no):
-    down, across = move(player_no)
-    while board[down][across] != 0:
-        print("Space is taken, please choose a different space.")
-        down, across = move(player_no)
-    if player_no == "1":
-        board[down][across] = "X"
-    if player_no == "2":
-        board[down][across] = "O"
-    print_board()
+# Function to check if the game is a draw (no more spaces to play on)
+
+def is_draw():
+    for row in board:
+        if 0 in row:
+            return False
+    return True
 
 # Start Gameplay loop
+# The game will continue until either player 1 wins, player 2 wins, or the game is a draw.
+# Game will only check if its a draw after player 1 turn because theres odd spaces to play on.
 
 print_board()
 while True:
@@ -74,7 +92,6 @@ while True:
         print("Player 1 wins!")
         break
     
-    # Check if its a draw (only have to after player 1 turn because theres odd spaces to play on)
     if is_draw():
         print("It's a draw!")
         break
