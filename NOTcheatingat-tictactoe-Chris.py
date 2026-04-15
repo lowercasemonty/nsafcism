@@ -2,15 +2,24 @@ board = [[0,0,0], [0,0,0], [0,0,0]]
 player_no = "1"
 
 def move(player_no):
-    down = int(input(f"Player {player_no}, enter down position (0-2): "))
-    while down != 0 and down != 1 and down != 2:
-        print("Please choose a valid position on the board")
-        down = int(input(f"Player {player_no}, enter down position (0-2): "))
+    print(f"Player {player_no} turn:")
+    while True:
+        down_input = input("enter down position (0-2): ")
+        if down_input.isdigit() and int(down_input) in (0, 1, 2):
+            down = int(down_input)
+            break
+        else:
+            print("Please choose a valid coordinate on the board")
+            continue
     
-    across = int(input("          enter across position (0-2): "))
-    while across != 0 and across != 1 and across != 2:
-        print("Please choose a valid position on the board")
-        across = int(input(f"Player {player_no}, enter across position (0-2): "))
+    while True:
+        across_input = input("enter across position (0-2): ")
+        if across_input.isdigit() and int(across_input) in (0, 1, 2):
+            across = int(across_input)
+            break
+        else:
+            print("Please choose a valid coordinate on the board")
+            continue
     return down, across
 
 def is_draw():
