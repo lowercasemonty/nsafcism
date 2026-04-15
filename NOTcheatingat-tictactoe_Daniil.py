@@ -1,109 +1,106 @@
 import os
-win = False
-draw = False
 
-#------------------------------------------------------------------
 #BOARD CODE 
 #Create Board
 board = [['□','□','□'], ['□','□','□'], ['□','□','□']]
+draw = False
+
 def display_board():
     clear_board()
-    for i in range(0,3):
-        for j in range(0,3):
+    for i in range(3):
+        for j in range(3):
             print(board[i][j], end=" ")
         print()
 
 #Clear Board
 def clear_board():
     os.system('cls' if os.name == 'nt' else 'clear')
-#------------------------------------------------------------------
 
-#------------------------------------------------------------------
+
 #PLAYER CODE
-#Action
-def action(player):
-    display_board()
+#Player moves
+def move(player):
     while True:
-        #Get Inputs
-        down = input(f"Player {player}, enter down position (1-3): ")
-        check_valid(down)
-        across = input("          enter across position (1-3): ")
-        check_valid(across)
-        down = int(down) - 1
-        across = int(across) - 1
-        #Check Vacancy
-        if board[down][across] != "□":
-            print("This spot is taken")
+        row = check_valid(input(f"Player {player}, Enter Row (1-3): "))
+        column = check_valid(input(f"Player {player}, Enter Column (1-3): "))
+        row_index = int(row) - 1 #Convert input to from 1-3 to 0-2 for indexing
+        column_index = int(column) - 1 #Convert input to from 1-3 to 0-2 for indexing
+        if not check_vacancy(row_index, column_index):
+            print("This spot is taken. Try again.`")
             continue
-        if player == "X":
-            board[down][across] = "X"
-        else:
-            board[down][across] = "O"
+        board[row_index][column_index] = player
         break
-    #Check Win/Draw
-    check_win(player)
 
-#Valid input
-def check_valid(a):
-    while a not in ["0", "1", "2"]:
-        if not a.isdigit():
-            display_board()
-            a = input("Invalid, Please enter a number between 1 and 3: ")
-        else:
-            return a
-#------------------------------------------------------------------
-
-#------------------------------------------------------------------
-#GAME CODE 
-#Win Condition
+#GAME CODE
+#Is the input a number between 1 and 3?
+def check_valid(value):
+    while True:
+        if value.isdigit() and 1 <= int(value) <= 3:
+            return value
+        display_board()
+        value = input("Invalid input. Please enter a number between 1 and 3: ")
+#Is this available?
+def check_vacancy(row, column):
+    return board[row][column] == "□"
+#Check if the player has won
 def check_win(player):
     for i in range(3):
-        #Row Check
-        if board[i][0] == board[i][1] == board[i][2] == (player):
-            output(player)
-        #Column Check
-        if board[0][i] == board[1][i] == board[2][i] == (player):
-            output(player)
-    #Diagonal Check
-    if board[0][0] == board[1][1] == board[2][2] == (player):
-        output(player)
-    if board[0][2] == board[1][1] == board[2][0] == (player):
-        output(player)
-    if win == False:
-        check_draw()
+        #Did a player win horizontally?
+        if board[i][0] == board[i][1] == board[i][2] == player:
+            return True
+        #Did a player win vertically?
+        if board[0][i] == board[1][i] == board[2][i] == player:
+            return True
+    #Did a player win diagonally?
+    if board[0][0] == board[1][1] == board[2][2] == player: 
+        return True
+    if board[0][2] == board[1][1] == board[2][0] == player:
+        return True
+    return False
 
-#Check for Draws
+#Check if the board is full
 def check_draw():
-    global draw
-    for i in range(3):
-        for j in range(3):
-            if board[i][j] == "□":
-                return
-    draw = True
+    for row in board:
+        if "□" in row:
+            return False
+    return True
 
-#Output Variables
-def output(player):
-    global win
-    global winner
-    win = True
-    winner = player
+#Reset the board
+def reset_board():
+    global board
+    board = [['□','□','□'], ['□','□','□'], ['□','□','□']]
 
-#Game Loop
-while not win and not draw:
-    if win == False:
-        action("X")
-    if win == False:
-        action("O")
-#---------------------------------------------------------------
+#Score
+def score(player):
+    if check_win(player):
+        return 1
+    elif check_draw():
+        return 0.5
+    else:
+        return 0
 
-#------------------------------------------------------------------
-#OUTPUT
-if win == True:
-    display_board()
-    print(f"Player {winner} wins!")
-if draw == True:
-    display_board()
-    print("No spaces left, Draw!")
-#------------------------------------------------------------------
+#Main Game Loop
+def game():
+    games = int(input("How many games would you like to play?: "))
+    while games % 2 != 1:
+        games = int(input("Number cannot be even, please input an Odd Number: "))
+    if games > 1:
+        print(f"Current Score: Player X: {score('X')} | Player O: {score('O')}")
+    for i in range (games):
+        while True:
+            players = ["X", "O"]
+            for i in range(len(players)):
+                display_board()
+                move(players[i])
+                if check_win(players[i]):
+                    display_board()
+                    print(f"Player {players[i]} wins!")
+                    break
+                if check_draw():
+                    display_board()
+                    print("It's a draw!")
+                    break
+    reset_board()
 
-# COMMIT TEST
+#Call Game
+game()
