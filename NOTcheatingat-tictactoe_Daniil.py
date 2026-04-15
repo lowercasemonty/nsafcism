@@ -1,25 +1,36 @@
+import os
 win = False
 draw = False
 
+#------------------------------------------------------------------
+#BOARD CODE 
 #Create Board
 board = [['□','□','□'], ['□','□','□'], ['□','□','□']]
 def display_board():
+    clear_board()
     for i in range(0,3):
         for j in range(0,3):
             print(board[i][j], end=" ")
         print()
 
+#Clear Board
+def clear_board():
+    os.system('cls' if os.name == 'nt' else 'clear')
+#------------------------------------------------------------------
+
+#------------------------------------------------------------------
+#PLAYER CODE
 #Action
 def action(player):
     display_board()
     while True:
         #Get Inputs
-        down = input(f"Player {player}, enter down position (0-2): ")
+        down = input(f"Player {player}, enter down position (1-3): ")
         check_valid(down)
-        across = input("          enter across position (0-2): ")
+        across = input("          enter across position (1-3): ")
         check_valid(across)
-        down = int(down)
-        across = int(across)
+        down = int(down) - 1
+        across = int(across) - 1
         #Check Vacancy
         if board[down][across] != "□":
             print("This spot is taken")
@@ -37,17 +48,13 @@ def check_valid(a):
     while a not in ["0", "1", "2"]:
         if not a.isdigit():
             display_board()
-            a = input("Please enter a number between 0 and 2: ")
+            a = input("Invalid, Please enter a number between 1 and 3: ")
         else:
             return a
+#------------------------------------------------------------------
 
-#Output
-def output(player):
-    global win
-    global winner
-    win = True
-    winner = player
-
+#------------------------------------------------------------------
+#GAME CODE 
 #Win Condition
 def check_win(player):
     for i in range(3):
@@ -65,6 +72,7 @@ def check_win(player):
     if win == False:
         check_draw()
 
+#Check for Draws
 def check_draw():
     global draw
     for i in range(3):
@@ -73,16 +81,27 @@ def check_draw():
                 return
     draw = True
 
+#Output Variables
+def output(player):
+    global win
+    global winner
+    win = True
+    winner = player
+
 #Game Loop
 while not win and not draw:
     if win == False:
         action("X")
     if win == False:
         action("O")
+#---------------------------------------------------------------
 
+#------------------------------------------------------------------
+#OUTPUT
 if win == True:
     display_board()
     print(f"Player {winner} wins!")
 if draw == True:
     display_board()
     print("No spaces left, Draw!")
+#------------------------------------------------------------------
