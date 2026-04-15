@@ -85,18 +85,38 @@ def is_draw():
 # The game will continue until either player 1 wins, player 2 wins, or the game is a draw.
 # Game will only check if its a draw after player 1 turn because theres odd spaces to play on.
 
-print_board()
-while True:
-    player_turn("1")
-    if has_won():
-        print("Player 1 wins!")
-        break
-    
-    if is_draw():
-        print("It's a draw!")
-        break
+def tictactoe():
+    print_board()
+    while True:
+        player_turn("1")
+        if has_won():
+            print("Player 1 wins!")
+            winner = 0
+            break
+        
+        if is_draw():
+            print("It's a draw!")
+            break
 
-    player_turn("2")
-    if has_won():
-        print("Player 2 wins!")
-        break
+        player_turn("2")
+        if has_won():
+            print("Player 2 wins!")
+            winner = 1
+            break
+    return winner
+
+# Leaderboard of winners of past
+
+def game_selection():
+    while True:
+        game_choice = input("What game would you like to play")
+        if game_choice == 1:
+                across = int(game_choice)
+                break
+        else:
+                print(f"Sorry we dont have {game_choice}")
+    return game_choice
+
+
+winner = tictactoe()
+print(winner)
