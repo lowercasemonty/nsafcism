@@ -5,4 +5,3 @@ def print_leaderboard():
     for i in range(2):
         for j in range(1):
             print("", leaderboard[i][j], end="        |")
-

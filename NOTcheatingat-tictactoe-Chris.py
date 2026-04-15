@@ -2,6 +2,38 @@
 board = [[0,0,0], [0,0,0], [0,0,0]]
 player_no = "1"
 
+# Classes (oooh fancy fancy)
+
+# Class for game selection
+class GameSelection:
+    def __init__(self):
+        self.gameID = None
+        self.games_list = {1: "Tic Tac Toe", 2: "Example 2", 3: "Example 3"}
+        self.launch_list = {1: tictactoe, 2: None, 3: None}
+    
+    def game_selection(self):
+        while True:
+            print("\nWhat game would you like to play?")
+            for game_id, game_name in self.games_list.items():
+                print(f"{game_id} = {game_name}")
+            game_choice = input("Enter game id: ")
+            if game_choice.isdigit() and int(game_choice) in self.games_list:
+                    self.gameID = int(game_choice)
+                    break
+            else:
+                    print("That's not a valid game ID, please try again.")
+                    continue
+        return self.gameID
+    
+    def launch(self):
+        if self.gameID in self.launch_list:
+            print(f"Starting {self.games_list[self.gameID]}")
+            self.launch_list[self.gameID]()
+    
+    def run(self):
+        self.game_selection()
+        self.launch()
+
 # Functions
 
 # Function to print the current state of the board in a nice format
@@ -105,18 +137,11 @@ def tictactoe():
             break
     return winner
 
-# Leaderboard of winners of past
-
-def game_selection():
-    while True:
-        game_choice = input("What game would you like to play")
-        if game_choice == 1:
-                across = int(game_choice)
-                break
-        else:
-                print(f"Sorry we dont have {game_choice}")
-    return game_choice
+# Create an instance of the GameSelection class to run the game selector 
+selector = GameSelection()
 
 
-winner = tictactoe()
-print(winner)
+# Code to run the game selector and then print a thank you message after the game is done
+while True:
+    selector.run()
+    play_again = input("Thanks for playing!\nPlay again? (y/n): ")
