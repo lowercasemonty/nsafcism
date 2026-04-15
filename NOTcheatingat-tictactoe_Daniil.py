@@ -48,7 +48,7 @@ def check_valid(a):
     while a not in ["0", "1", "2"]:
         if not a.isdigit():
             display_board()
-            a = input("Invalid, Please enter a number between 0 and 2: ")
+            a = input("Invalid, Please enter a number between 1 and 3: ")
         else:
             return a
 #------------------------------------------------------------------
