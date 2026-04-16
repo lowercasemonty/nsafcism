@@ -1,4 +1,5 @@
-# Stylistic choices taken from: NOTcheatingat-tictactoe-Chris.py (class structure, game selection) and NOTcheatingat-tictactoe_Daniil.py (terminal management, advanced win checking)
+# Stylistic choices taken from: NOTcheatingat-tictactoe-Chris.py (class structure, game selection) 
+# and NOTcheatingat-tictactoe_Daniil.py (terminal management, advanced win checking)
 import os
 
 # VARIABLE LIST:
@@ -24,8 +25,7 @@ def reset_board():
 def print_board():
     """Function to print the current state of the board in a nice format."""
     clear_board()
-    print("Current Board:")
-    print("-" * 13)
+    print("Current Board:\n" + "-" * 13)
     for i in range(board_size):
         for j in range(board_size):
             symbol = board[i][j] if board[i][j] != 0 else " "
