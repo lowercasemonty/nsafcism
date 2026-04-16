@@ -9,7 +9,7 @@ import os
 # players: List to switch between who is X and who is O
 # gameID: Selected game ID from the menu
 # games: Number of games to play in the current match
-# gamesplayed: How many games have been played so far in the current match
+# games_played: How many games have been played so far in the current match
 # winner: Match winner once the majority is reached
 
 scores = {"X": 0, "O": 0}
@@ -117,7 +117,7 @@ class GameSelection:
     def __init__(self):
         self.gameID = None
         self.games = 0
-        self.gamesplayed = 0
+        self.games_played = 0
         self.winner = ""
         self.games_list = {1: "Tic Tac Toe", 2: "Example 2", 3: "Example 3"}
         self.launch_list = {1: tictactoe, 2: None, 3: None}
@@ -152,7 +152,7 @@ class GameSelection:
                 winner = max(scores, key=scores.get)
                 print(f"Best of {self.games}, {winner} wins!")
                 return winner
-            elif self.gamesplayed != self.games - 1:
+            elif self.games_played != self.games - 1:
                 display_scores()
                 input("Press 'enter' to continue: ")
             return None
@@ -163,7 +163,7 @@ class GameSelection:
             print(f"Starting {self.games_list[self.gameID]}, best of {self.games}")
             for i in range(self.games):
                 self.launch_list[self.gameID]()
-                self.gamesplayed += 1
+                self.games_played += 1
                 match_winner = self.majority()
                 if match_winner:
                     self.winner = match_winner
