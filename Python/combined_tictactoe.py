@@ -112,6 +112,7 @@ class GameSelection:
     """Class for game selection and management."""
     def __init__(self):
         self.gameID = None
+        self.games = 0
         self.games_list = {1: "Tic Tac Toe", 2: "Example 2", 3: "Example 3"}
         self.launch_list = {1: tictactoe, 2: None, 3: None}
     
@@ -129,15 +130,27 @@ class GameSelection:
                 print("That's not a valid game ID, please try again.")
         return self.gameID
     
+    def game_count(self):
+        """Method to ask user how many games they want to play"""
+        # Choose how many times you want to play, call game
+        games = input("How many games would you like to play: ")
+        while not games.isdigit() or int(games) % 2 == 0: # Check to see if the input is a number, then check to see if that number is odd
+            print("Invalid input, please enter an odd number")
+            games = input("How many games would you like to play: ")
+        games = int(games)
+        return games
+    
     def launch(self):
         """Method to launch the selected game."""
         if self.gameID in self.launch_list and self.launch_list[self.gameID]:
-            print(f"Starting {self.games_list[self.gameID]}")
-            self.launch_list[self.gameID]()
+            print(f"Starting {self.games_list[self.gameID]}, best of {self.games}")
+            for i in range (self.games):
+                self.launch_list[self.gameID]()
     
     def run(self):
         """Method to run the game selector and launch the game."""
         self.game_selection()
+        self.games = self.game_count()
         self.launch()
 
 # Create an instance of the GameSelection class
