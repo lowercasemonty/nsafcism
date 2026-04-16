@@ -7,6 +7,10 @@ import os
 # board_size: Variable for the size of the board (default 3x3)
 # board: 2D array representing the current state of the board
 # players: List to switch between who is X and who is O
+# gameID: Selected game ID from the menu
+# games: Number of games to play in the current match
+# gamesplayed: How many games have been played so far in the current match
+# winner: Match winner once the majority is reached
 
 scores = {"X": 0, "O": 0}
 board_size = 3
@@ -113,6 +117,8 @@ class GameSelection:
     def __init__(self):
         self.gameID = None
         self.games = 0
+        self.gamesplayed = 0
+        self.winner = ""
         self.games_list = {1: "Tic Tac Toe", 2: "Example 2", 3: "Example 3"}
         self.launch_list = {1: tictactoe, 2: None, 3: None}
     
@@ -140,15 +146,33 @@ class GameSelection:
         games = int(games)
         return games
     
+    def majority(self):
+            majority = self.games // 2 + 1
+            if scores["X"] >= majority or scores["O"] >= majority:
+                winner = max(scores, key=scores.get)
+                print(f"Best of {self.games}, {winner} wins!")
+                return winner
+            elif self.gamesplayed != self.games - 1:
+                display_scores()
+                input("Press 'enter' to continue: ")
+            return None
+    
     def launch(self):
         """Method to launch the selected game."""
         if self.gameID in self.launch_list and self.launch_list[self.gameID]:
             print(f"Starting {self.games_list[self.gameID]}, best of {self.games}")
-            for i in range (self.games):
+            for i in range(self.games):
                 self.launch_list[self.gameID]()
+                self.gamesplayed += 1
+                match_winner = self.majority()
+                if match_winner:
+                    self.winner = match_winner
+                    break
     
     def run(self):
         """Method to run the game selector and launch the game."""
+        scores["X"] = 0
+        scores["O"] = 0
         self.game_selection()
         self.games = self.game_count()
         self.launch()
