@@ -8,8 +8,9 @@ player_no = "1"
 class GameSelection:
     def __init__(self):
         self.gameID = None
-        self.games_list = {1: "Tic Tac Toe", 2: "Example 2", 3: "Example 3"}
-        self.launch_list = {1: tictactoe, 2: None, 3: None}
+        self.games_list = {1: "Tic Tac Toe", 2: "Example 2", 3: "Example 3"} # List of Available Games
+        self.launch_list = {1: tictactoe, 2: None, 3: None} # Functions to launch said games
+        self.scores = {"1": 0, "2": 0} # Dictionary to keep track of total player wins across games for a leaderboard
     
     def game_selection(self):
         while True:
@@ -33,6 +34,10 @@ class GameSelection:
     def run(self):
         self.game_selection()
         self.launch()
+    
+    def update_scores(self, winner):
+        if winner and winner in self.scores:
+            self.scores[winner] += 1
 
 # Functions
 
@@ -56,7 +61,7 @@ def player_turn(player_no):
         down, across = move(player_no)
     if player_no == "1":
         board[down][across] = "X"
-    if player_no == "2":
+    elif player_no == "2":
         board[down][across] = "O"
     print_board()
 
@@ -65,23 +70,16 @@ def player_turn(player_no):
 
 def move(player_no):
     print(f"Player {player_no} turn:")
-    while True:
-        down_input = input("enter down position (0-2): ")
-        if down_input.isdigit() and int(down_input) in (0, 1, 2):
-            down = int(down_input)
-            break
-        else:
-            print("Please choose a valid coordinate on the board")
-            continue
     
-    while True:
-        across_input = input("enter across position (0-2): ")
-        if across_input.isdigit() and int(across_input) in (0, 1, 2):
-            across = int(across_input)
-            break
-        else:
-            print("Please choose a valid coordinate on the board")
-            continue
+    def get_coordinate(coordinate_name):
+        while True:
+            input_val = input(f"enter {coordinate_name} position (0-2): ")
+            if input_val.isdigit() and int(input_val) in (0, 1, 2):
+                return int(input_val)
+            else:
+                print("Please choose a valid coordinate on the board")
+    down = get_coordinate("down")
+    across = get_coordinate("across")
     return down, across
 
 # Function to check if a player has won by checking all rows, columns, and diagonals for three of the same non-zero symbol (X or O)
@@ -118,24 +116,34 @@ def is_draw():
 # Game will only check if its a draw after player 1 turn because theres odd spaces to play on.
 
 def tictactoe():
+    global board
+    board = reset_board()
+    winner = None
     print_board()
     while True:
         player_turn("1")
         if has_won():
             print("Player 1 wins!")
-            winner = 0
+            winner = "1"
             break
         
         if is_draw():
             print("It's a draw!")
+            winner = None
             break
 
         player_turn("2")
         if has_won():
             print("Player 2 wins!")
-            winner = 1
+            winner = "2"
             break
     return winner
+
+# Reset board in between games
+
+def reset_board():
+    global board
+    board = [[0,0,0], [0,0,0], [0,0,0]]
 
 # Create an instance of the GameSelection class to run the game selector 
 selector = GameSelection()
@@ -144,4 +152,8 @@ selector = GameSelection()
 # Code to run the game selector and then print a thank you message after the game is done
 while True:
     selector.run()
-    play_again = input("Thanks for playing!\nPlay again? (y/n): ")
+    play_again = input("Thanks for playing!\nPlay again? (y/n): ").lower()
+    if play_again != 'y':
+        print("Thanks for playing! Goodbye!")
+        break
+    reset_board()
