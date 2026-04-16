@@ -1,5 +1,18 @@
-# Constants
+# Variable Library
 tictactoe_board = [[0,0,0], [0,0,0], [0,0,0]]
+board_dimensions = 3
+'''
+coordinate name(down or across)
+player_no
+winner
+
+gameID
+games_list
+launch_list
+scores
+game_choice
+'''
+
 
 # Functions
 
@@ -7,8 +20,8 @@ tictactoe_board = [[0,0,0], [0,0,0], [0,0,0]]
 
 def print_tictactoe_board():
     print("Current Board: \n-----------------")
-    for i in range(3):
-        for j in range(3):
+    for i in range(board_dimensions):
+        for j in range(board_dimensions):
             print("|", tictactoe_board[i][j], end=" | ")
         print("\n-----------------")
         
