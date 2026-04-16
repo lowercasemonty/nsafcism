@@ -2,15 +2,15 @@
 tictactoe_board = [[0,0,0], [0,0,0], [0,0,0]]
 board_dimensions = 3
 '''
-coordinate name(down or across)
-player_no
-winner
+coordinate name(down or across) # for move function
+player_no # to decide which symbol to use in player_turn function
+winner # to keep track of who won the game in tictactoe function and update scores in GameSelection class
 
-gameID
-games_list
-launch_list
-scores
-game_choice
+gameID # to keep track of which game the user selected in GameSelection class
+games_list # to store the available games for selection in GameSelection class
+launch_list # to store the functions that launch each game in GameSelection class
+scores # to keep track of total player wins across games for a leaderboard in GameSelection class
+game_choice # to store the user's input for which game they want to play in GameSelection class
 '''
 
 
@@ -24,7 +24,6 @@ def print_tictactoe_board():
         for j in range(board_dimensions):
             print("|", tictactoe_board[i][j], end=" | ")
         print("\n-----------------")
-        
 
 # Function to handle a player's turn by getting their move, validating that the space is not already taken, 
 # and updating the board with their symbol (X for player 1 and O for player 2)
