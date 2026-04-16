@@ -35,22 +35,25 @@ def display_scores():
 
 
 # PLAYER CODE
+# Check_Valid: Call to see if the player inputs are both numbers, and within index range.
+def check_valid(value):
+    while True:
+        if value.isdigit() and 1 <= int(value) <= Board_size:
+            return int(value)
+        value = input(f"Invalid input. Please enter a number between 1 and {Board_size}: ")
+
 # Move: Call to receive inputs from players.
 def move(player):
     while True:
-        try:
-            row, column = map(int, input(f"Player {player}, enter row and column (e.g. 1 2): ").split())
-            if not (1 <= row <= Board_size and 1 <= column <= Board_size):
-                raise ValueError
-            row_index = row - 1       # Convert input from 1-3 to 0-2 for indexing
-            column_index = column - 1 # Convert input from 1-3 to 0-2 for indexing
-            if not check_vacancy(row_index, column_index):
-                print("This spot is taken. Try again.")
-                continue
-            board[row_index][column_index] = player
-            break
-        except ValueError:
-            print(f"Invalid input. Please enter two numbers between 1 and {Board_size} (e.g. 1 2).")
+        row = check_valid(input(f"Player {player}, Enter Row (1-{Board_size}): "))
+        column = check_valid(input(f"Player {player}, Enter Column (1-{Board_size}): "))
+        row_index = row - 1       # Convert input from 1-3 to 0-2 for indexing
+        column_index = column - 1 # Convert input from 1-3 to 0-2 for indexing
+        if not check_vacancy(row_index, column_index):
+            print("This spot is taken. Try again.")
+            continue
+        board[row_index][column_index] = player
+        break
 
 
 # GAME CODE
@@ -114,6 +117,7 @@ for i in range(games):
     if scores[0] >= majority or scores[1] >= majority:
         winner = players[scores.index(max(scores))]
         print(f"Best of {games}, {winner} wins!")
+        reset_board()
         break
     elif games > 1 and i < games - 1:
         input("Press 'enter' to continue: ")
