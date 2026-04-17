@@ -38,8 +38,6 @@ def setup_board():
                 else:
                     continue
 
-
-
 def select_piece(player):
     return
 

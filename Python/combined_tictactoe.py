@@ -124,6 +124,17 @@ class GameSelection:
         self.games_list = {1: "Tic Tac Toe", 2: "Example 2", 3: "Example 3"}
         self.launch_list = {1: tictactoe, 2: None, 3: None}
     
+    def majority(self):
+        majority = self.games // 2 + 1
+        if ttt_scores["X"] >= majority or ttt_scores["O"] >= majority:
+            winner = max(ttt_scores, key=ttt_scores.get)
+            print(f"Best of {self.games}, {winner} wins!")
+            return winner
+        elif self.games_played != self.games - 1:
+            display_scores()
+            input("Press 'enter' to continue: ")
+        return None
+    
     def game_selection(self):
         """Method to handle game selection."""
         while True:
@@ -147,17 +158,6 @@ class GameSelection:
             games = input("How many games would you like to play: ")
         games = int(games)
         return games
-    
-    def majority(self):
-            majority = self.games // 2 + 1
-            if ttt_scores["X"] >= majority or ttt_scores["O"] >= majority:
-                winner = max(ttt_scores, key=ttt_scores.get)
-                print(f"Best of {self.games}, {winner} wins!")
-                return winner
-            elif self.games_played != self.games - 1:
-                display_scores()
-                input("Press 'enter' to continue: ")
-            return None
     
     def launch(self):
         """Method to launch the selected game."""
