@@ -15,7 +15,7 @@ import os
 ttt_scores = {"X": 0, "O": 0}
 ttt_board_size = 3
 ttt_board = [[0 for _ in range(ttt_board_size)] for _ in range(ttt_board_size)]
-ttt_players = ["X", "O"]
+players = [0, 1]
 
 def clear_board():
     """Call to wipe the user's terminal."""
@@ -92,14 +92,16 @@ def check_draw():
             return False
     return True
 
+
 def tictactoe():
     """Main game loop: Shows board, takes player inputs, checks for winner or draw."""
     global ttt_board
+    global players
     reset_board()
     print_board()
     
     while True:
-        for player in ttt_players:
+        for player in players:
             print_board()
             move(player)
             
@@ -161,6 +163,9 @@ class GameSelection:
     
     def launch(self):
         """Method to launch the selected game."""
+        global players
+        if self.gameID == 1:
+            players = ["X", "O"]
         if self.gameID in self.launch_list and self.launch_list[self.gameID]:
             print(f"Starting {self.games_list[self.gameID]}, best of {self.games}")
             for i in range(self.games):
