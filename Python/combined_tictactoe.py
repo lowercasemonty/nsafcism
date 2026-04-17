@@ -46,16 +46,18 @@ def display_scores():
 def check_valid(value, board_size):
     """Call to see if the player inputs are numbers and within valid range."""
     while True:
-        if value.isdigit() and 0 <= int(value) < board_size:
+        if value.isdigit() and 0 <= int(value) <= board_size:
             return int(value)
         else:
-            value = input(f"Please choose a valid coordinate on the board (0-{board_size-1}): ")
+            value = input(f"Please choose a valid coordinate on the board (1-{board_size}): ")
 
 def move(player):
     """Call to receive inputs from players."""
     while True:
-        down = check_valid(input(f"Player {player}, enter row position (0-{board_size-1}): "), board_size)
-        across = check_valid(input(f"Player {player}, enter column position (0-{board_size-1}): "), board_size)
+        down = check_valid(input(f"Player {player}, enter row position (1-{board_size}): "), board_size)
+        across = check_valid(input(f"Player {player}, enter column position (1-{board_size}): "), board_size)
+        down = down - 1
+        across = across - 1
         
         if board[down][across] != 0:
             print("Space is taken, please choose a different space.")

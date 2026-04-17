@@ -39,7 +39,8 @@ def display_scores():
 def move(player):
     while True:
         try:
-            row, column = map(int, input(f"Player {player}, enter row and column (e.g. 1 2): ").split())
+            row = int(input(f"Player {player}, Enter position from 1-3: "))
+            column= int(input(f"Player {player}, Enter position from 1-3: "))
             if not (1 <= row <= Board_size and 1 <= column <= Board_size):
                 raise ValueError
             row_index = row - 1       # Convert input from 1-3 to 0-2 for indexing
@@ -50,7 +51,7 @@ def move(player):
             board[row_index][column_index] = player
             break
         except ValueError:
-            print(f"Invalid input. Please enter two numbers between 1 and {Board_size} (e.g. 1 2).")
+            print(f"Invalid input. Please enter two numbers between 1 and {Board_size}")
 
 
 # GAME CODE
