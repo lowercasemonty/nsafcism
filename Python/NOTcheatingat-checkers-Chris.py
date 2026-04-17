@@ -18,13 +18,24 @@ def clear_board():
 def print_board():
     """Function to print the current state of the board in a nice format."""
     clear_board()
-    print("Current Board:\n" + "-" * 33)
+    print("Current Board:")
+    
+    # Col headers
+    print("   ", end="")
+    for col in range(8):
+        print(f"{chr(65 + col):^4}", end="")
+    print("\n  " + "-" * 33)
+    
+    # Rest of the board
     for i in range(board_size):
+        # Print row number
+        print(i + 1, end=" ")
+        # Print the board row
         for j in range(board_size):
             symbol = board[i][j] if board[i][j] != 0 else " "
             print("|", symbol, end=" ")
         print("|")
-        print("-" * 33)
+        print("  " + "-" * 33)
 
 def setup_board():
     global board
