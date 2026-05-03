@@ -1,6 +1,7 @@
 # Stylistic choices taken from: NOTcheatingat-tictactoe-Chris.py (class structure, game selection) 
 # and NOTcheatingat-tictactoe_Daniil.py (terminal management, advanced win checking)
 import os
+from .tictactoe_bot import *
 
 # VARIABLE LIST:
 # scores: Dictionary to track scores for X and O
