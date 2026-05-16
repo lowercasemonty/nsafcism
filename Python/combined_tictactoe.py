@@ -1,6 +1,7 @@
 # Stylistic choices taken from: NOTcheatingat-tictactoe-Chris.py (class structure, game selection) 
 # and NOTcheatingat-tictactoe_Daniil.py (terminal management, advanced win checking)
 import os
+from .tictactoe_bot import *
 
 # VARIABLE LIST:
 # scores: Dictionary to track scores for X and O
@@ -114,6 +115,8 @@ def tictactoe():
             if check_draw():
                 print_board()
                 print("It's a draw!")
+                ttt_scores["X"] += 0.5
+                ttt_scores["O"] += 0.5
                 return None
 
 class GameSelection:
@@ -126,15 +129,15 @@ class GameSelection:
         self.games_list = {1: "Tic Tac Toe", 2: "Example 2", 3: "Example 3"}
         self.launch_list = {1: tictactoe, 2: None, 3: None}
     
-    def majority(self):
+    def check_match_winner(self):
+        """Check if someone has won the match."""
         majority = self.games // 2 + 1
-        if ttt_scores["X"] >= majority or ttt_scores["O"] >= majority:
-            winner = max(ttt_scores, key=ttt_scores.get)
-            print(f"Best of {self.games}, {winner} wins!")
-            return winner
-        elif self.games_played != self.games - 1:
-            display_scores()
-            input("Press 'enter' to continue: ")
+        if ttt_scores["X"] >= majority:
+            print(f"Best of {self.games}, X wins!")
+            return "X"
+        elif ttt_scores["O"] >= majority:
+            print(f"Best of {self.games}, O wins!")
+            return "O"
         return None
     
     def game_selection(self):
@@ -168,13 +171,18 @@ class GameSelection:
             players = ["X", "O"]
         if self.gameID in self.launch_list and self.launch_list[self.gameID]:
             print(f"Starting {self.games_list[self.gameID]}, best of {self.games}")
-            for i in range(self.games):
-                self.launch_list[self.gameID]()
-                self.games_played += 1
-                match_winner = self.majority()
-                if match_winner:
-                    self.winner = match_winner
-                    break
+            while self.games_played < self.games:
+                result = self.launch_list[self.gameID]()
+                if result is not None:  # Only count non-draw games
+                    self.games_played += 1
+                    match_winner = self.check_match_winner()
+                    if match_winner:
+                        self.winner = match_winner
+                        break
+                else:
+                    # Draw occurred, display scores and continue without counting the game
+                    display_scores()
+                    input("Press 'enter' to continue: ")
     
     def run(self):
         """Method to run the game selector and launch the game."""
