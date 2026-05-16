@@ -15,6 +15,18 @@ def clear_board():
     """Call to wipe the user's terminal."""
     os.system('cls' if os.name == 'nt' else 'clear')
 
+def setup_board():
+    global board
+    for row in range(board_size):
+        for col in range(board_size):
+            if (row + col) % 2 != 0:
+                if row < 3:
+                    board[row][col] = "W"
+                elif row > 4:
+                    board[row][col] = "B"
+                else:
+                    continue
+
 def print_board():
     """Function to print the current state of the board in a nice format."""
     clear_board()
@@ -37,26 +49,17 @@ def print_board():
         print("|")
         print("  " + "-" * 33)
 
-def setup_board():
-    global board
-    for row in range(board_size):
-        for col in range(board_size):
-            if (row + col) % 2 != 0:
-                if row < 3:
-                    board[row][col] = "W"
-                elif row > 4:
-                    board[row][col] = "B"
-                else:
-                    continue
-
 def select_piece(player):
     return
 
 def move(player):
     return
 
+def is_captured():
+    return
 
-
+def has_won():
+    return
 
 
 setup_board()
