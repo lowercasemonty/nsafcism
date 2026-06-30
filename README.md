@@ -1,6 +1,6 @@
 # ⛹️‍♂️ NSAFCISM
 ### (Non-Scholastic Academic File Collaboration and Integration System Manager)
-**aka Not sharing answers from class in semester one**
+**aka Not sharing answers from class AT ALL**
 
 ## 😁👍 Overview
 
