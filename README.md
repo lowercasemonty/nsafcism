@@ -4,18 +4,21 @@
 
 ## 😁👍 Overview
 
-NSAFCISM (Non-Scholastic Academic File Collaboration and Integration System Manager) is a collaborative repository designed to streamline group project workflows for students. Rather than working in isolation, contributors share their individually completed work — answers, notes, and solutions developed through their own effort — and consolidate them into a unified, comprehensive "super file." This approach encourages knowledge sharing and peer learning while preserving academic integrity, as each contribution reflects genuine personal work before being merged.
+NSAFCISM (Non-Scholastic Academic File Collaboration and Integration System Manager) is a collaborative repository designed to streamline group project workflows for students. Rather than working i[...]
 
-NSAFCISM serves as a central hub for organizing, versioning, and integrating these contributions, making it easier for student teams to produce polished, well-rounded final deliverables from a collection of authentic individual inputs.
+NSAFCISM serves as a central hub for organizing, versioning, and integrating these contributions, making it easier for student teams to produce polished, well-rounded final deliverables from a coll[...]
 
 ---
 
 ## 🤓 Current Contributors
 
-**@lowercasemonty** serves as the senior developer on NSAFCISM, bringing 8 years of hands-on coding experience across a broad and diverse technology stack. Their expertise spans Java, JavaScript, HTML, SQL, SQLite, Python, and C#, giving them the versatility to architect robust solutions across both front-end and back-end domains. As the project's technical backbone, lowercasemonty's breadth of knowledge ensures that NSAFCISM is built on solid, scalable foundations.
-Alongside them is **@jigsaw189**, the project's junior developer, who contributes 5 years of focused experience primarily in Python and basic C++. While newer to the team's full scope of technologies, jigsaw189 brings sharp problem-solving instincts and a strong foundation in core programming concepts, making them a valuable and growing contributor to the project.
+**@lowercasemonty** serves as the senior developer on NSAFCISM, bringing 8 years of hands-on coding experience across a broad and diverse technology stack. Their expertise spans Java, JavaScript, [...]
 
-Together, the two form a well-rounded development duo — combining seasoned versatility with focused, emerging talent.
+Alongside them is **@jigsaw189**, the project's junior developer, who contributes 5 years of focused experience primarily in Python and basic C++. While newer to the team's full scope of technolog[...]
+
+Also recognized is **Andre** — a junior coder / intern — who has been instrumental in creating some of the most complex and creative solutions to tasks thus far and has scored the highest on testing metrics.
+
+Together, the three form a well-rounded development team — combining seasoned versatility with focused, emerging talent.
 
 ---
 
