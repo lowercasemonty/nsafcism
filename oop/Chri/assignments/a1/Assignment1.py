@@ -61,12 +61,13 @@ class LaptopLoanDesk:
             Student(4, "Diana"),
             Student(5, "Ethan")
         ]
+        self.next_laptop_id = len(self.laptops) + 1
 
     def show_laptops(self): # Retrieve list of laptops in storage
         return self.laptops
 
     def add_laptop(self, brand, model_name): # Add laptop from brand, model and an automatically assigned ID
-        laptop = Laptop(len(self.laptops) + 1, brand, model_name)
+        laptop = Laptop(self.next_laptop_id, brand, model_name)
         self.laptops.append(laptop)
         return laptop
 
