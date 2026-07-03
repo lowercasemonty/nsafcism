@@ -78,15 +78,15 @@ class LaptopLoanDesk:
         for laptop in self.laptops.values():
             if laptop.model_name == model_name:
                 return laptop
-        return 0 # If none are found return a null value
+        return None # If none are found return None
 
     def search_laptop_by_id(self, laptop_id): # Search for laptop using its unique ID
         try:
             laptop_id = int(laptop_id)
         except (TypeError, ValueError):
-            return 0
+            return None
 
-        return self.laptops.get(laptop_id, 0) # Lookup dict key/ID directly
+        return self.laptops.get(laptop_id, None) # Lookup dict key/ID directly
 
     def show_students(self): # Retrieve list of students
         return list(self.students.values())
@@ -101,9 +101,9 @@ class LaptopLoanDesk:
         try:
             student_id = int(student_id)
         except (TypeError, ValueError):
-            return 0
+            return None
 
-        return self.students.get(student_id, 0) # Lookup dict key/ID directly
+        return self.students.get(student_id, None) # Lookup dict key/ID directly
 
     def loan_laptop(self, student_id, laptop_id): # Loan laptop by finding a student from ID and appending a specific device ID into the students personal laptops list
         try:
@@ -114,12 +114,12 @@ class LaptopLoanDesk:
             return None
 
         student = self.search_student_by_id(student_id)
-        if student == 0:
+        if student is None:
             print("Student does not exist") # Fallback method if student does not exist in system
             return None
 
         laptop = self.search_laptop_by_id(laptop_id)
-        if laptop == 0:
+        if laptop is None:
             print("Laptop ID does not exist") # Fallback method if laptop does not exist in system either
             return None
         
@@ -144,12 +144,12 @@ class LaptopLoanDesk:
             return None
         
         student = self.search_student_by_id(student_id)
-        if student == 0:
+        if student is None:
             print("Student does not exist") # Fallback method for when student ID does not exist
             return None
         
         laptop = self.search_laptop_by_id(laptop_id)
-        if laptop == 0:
+        if laptop is None:
             print("Laptop ID does not exist") # Fallback method if laptop does not exist in system either
             return None
         
