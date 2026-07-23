@@ -12,7 +12,8 @@
 
       .container {
         border: 1px dotted #404040;
-        box-shadow: 5px 5px 5px #808080;
+        box-shadow: 5px 5px 5px 
+#808080;
         margin-bottom: 30px;
         margin-left: auto;
         margin-right: auto;
@@ -26,6 +27,7 @@
         line-height: 27px;
         width: 110px;
       }
+
 
       body {
         background-color: #ededed;
@@ -45,11 +47,21 @@
 
       input[type="reset"], input[type="submit"], select {
         border: 1px dotted #404040;
+        padding: 20px;
       }
 
       input[type="reset"]:hover, input[type="submit"]:hover, label:hover, select:hover {
         cursor: pointer;
+        padding: 20px
       }
+
+      input[type="search"] {
+        background-color: #f5f5f5;
+        padding: 5px;
+        border: 1px solid 
+#404040
+      }
+
 
       div {
         font-size: 14px;
@@ -57,8 +69,20 @@
         background-color: #ffffff
       }
 
-
       /* END: Template CSS (DO NOT ALTER/REMOVE) ------------- */
+
+      .corners {
+        border-radius: 5px;
+      }
+
+      .spacing {
+        margin: 20px
+      }
+
+      input {
+        font-family: Arial;
+        font-size: 13px;
+      }
 
       /* INSERT INTERNAL CSS HERE */
 
@@ -80,17 +104,17 @@
 
     <!-- BEGIN: Task 1 Solution -->
     <div style="background-color: #ffffff;" class="container">
-      <img src="https://mywebspace.net.au/UOWC128/assignment_2/images/task_1.png"
+      <img src="
+https://mywebspace.net.au/UOWC128/assignment_2/images/task_1.png"
       alt="Youtube logo"
-      style="width: 250px; height: auto;">
-      <form>
+      style="width: 250px; height: auto;" class="spacing">
+      <form target="_blank" class="spacing">
         <label>Search Terms:</label>
-        <input type="search" style="width: 350px" placeholder="Please enter search terms here...">
-        <button type="submit">Submit</button>
-        <button type="reset">Reset</button>
+        <input type="search" style="width: 350px" placeholder="Please enter search terms here..." required class="corners">
+        <button type="submit" class="corners" style="margin: 10px">Submit</button>
+        <button type="reset" class="corners">Reset</button>
       </form>
     </div>
-
 
     <!-- END: Task 1 Solution -->
 
