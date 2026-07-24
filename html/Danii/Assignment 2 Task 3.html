@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>DPIT128: Assignment 2 (Task 3)</title>
+    <style>
+      /* BEGIN: Template CSS (DO NOT ALTER/REMOVE) ----------- */
+      .container {
+        border: 1px dotted #404040;
+        box-shadow: 5px 5px 5px #808080;
+        margin-bottom: 30px;
+        margin-left: auto;
+        margin-right: auto;
+        text-align: left;
+        width: 665px;
+      }
+
+      .field-label {
+        float: left;
+        line-height: 27px;
+        width: 110px;
+      }
+
+      body {
+        background-color: #ededed;
+        text-align: center;
+      }
+
+      input:focus, select:focus, textarea:focus {
+        box-shadow: 0px 0px 1px 1px #99c65c;
+        outline: none;
+      }
+
+      input[type="reset"], input[type="submit"], label {
+        height: 25px;
+        width: 60px;
+      }
+
+      input[type="reset"], input[type="submit"], select {
+        border: 1px dotted #404040;
+      }
+
+      input[type="reset"]:hover, input[type="submit"]:hover, label:hover, select:hover {
+        cursor: pointer;
+      }
+      /* END: Template CSS (DO NOT ALTER/REMOVE) ------------- */
+
+      div {
+        font-family: Arial, sans-serif;
+        font-size: 14px;
+      }
+
+      input, select {
+        font-family: Arial, sans-serif;
+        font-size: 13px;
+      }
+
+      input[type] {
+        background-color: #fffff9;
+        padding: 5px;
+        border: 1px dotted #404040;
+      }
+
+      input[type="search"] {
+        background-color: #fffff9;
+        padding: 5px;
+        border: 1px dotted #404040;
+        margin-right: 10px;
+      }
+
+      .round {
+        border-radius: 5px;
+      }
+
+      .box-margin {
+        margin: 20px;
+      }
+
+      .button-spacing {
+        margin-right: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>DPIT128: Assignment 2</h1>
+    <h2>Daniil Azakishi 1414598</h2>
+    <h3>Date Due: 24/07/2026</h3>
+    <hr>
+    <p style="font-weight: bold;">
+      I have viewed the College&apos;s policy regarding Academic Integrity as provided at the following URL:<br>
+      <a href="https://www.uowcollege.edu.au/site-assets/uow-college-australia/documents/policies-and-procedures/Academic-Integrity-and-Student-Conduct-Policy-PDF.pdf" target="_blank">
+        https://www.uowcollege.edu.au/site-assets/uow-college-australia/documents/policies-and-procedures/Academic-Integrity-and-Student-Conduct-Policy-PDF.pdf
+      </a>
+    </p>
+    <hr>
+    <h2>Task 3</h2>
+
+    <!-- BEGIN: Task 3 Solution -->
+    <div class="container round" style="background-image: url('https://mywebspace.net.au/UOWC128/assignment_2/images/bg_tile.png'); background-repeat: repeat;">
+      <img
+        class="box-margin"
+        src="https://mywebspace.net.au/UOWC128/assignment_2/images/task_3.png"
+        alt="Supercheap Auto logo"
+        style="width: 250px; height: auto;"
+      >
+      <form
+        class="box-margin"
+        action="https://www.supercheapauto.com.au/search"
+        method="get"
+        target="_blank"
+      >
+        <label for="search_query">Search Terms:</label>
+        <input
+          type="search"
+          id="search_query"
+          name="q"
+          style="width: 350px;"
+          placeholder="Please enter search terms here..."
+          required
+          class="round"
+        >
+        <input type="submit" value="Submit" class="round button-spacing">
+        <input type="reset" value="Reset" class="round">
+
+        <div style="margin-top: 15px;">
+          <label for="limit-results">
+            <input type="checkbox" id="limit-results" name="limit" checked>
+            Limit search results to 12 items per page
+          </label>
+        </div>
+
+        <div style="margin-top: 15px;">
+          <label for="sort-price">Sort items by price:</label>
+          <select id="sort-price" name="sort" class="round">
+            <option value="ascending" selected>ascending</option>
+            <option value="descending">descending</option>
+          </select>
+        </div>
+      </form>
+    </div>
+    <!-- END: Task 3 Solution -->
+
+    <p>&copy; Daniil Azakishi</p>
+  </body>
+</html>
