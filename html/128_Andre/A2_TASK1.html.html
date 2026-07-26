@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+
+<!-- Assignment 2 (Task 1) by Andre Cid Cabase (1121765) -->
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>DPIT128: Assignment 2 (Task 3)</title>
+    <style>
+
+      /* BEGIN: Template CSS (DO NOT ALTER/REMOVE) ----------- */
+
+      .container {
+        border: 1px dotted #404040;
+        box-shadow: 5px 5px 5px #808080;
+        margin-bottom: 30px;
+        margin-left: auto;
+        margin-right: auto;
+        text-align: left;
+        width: 665px;
+      }
+
+      .field-label {
+        float: left;
+        line-height: 27px;
+        width: 110px;
+      }
+
+      body {
+        background-color: #ededed;
+        text-align: center;
+      }
+
+      input:focus, select:focus, textarea:focus {
+        box-shadow: 0px 0px 1px 1px #99c65c;
+        outline: none;
+      }
+
+      input[type="reset"], input[type="submit"], label {
+        height: 25px;
+        width: 60px;
+      }
+
+      input[type="reset"], input[type="submit"], select {
+        border: 1px dotted #404040;
+      }
+
+      input[type="reset"]:hover, input[type="submit"]:hover, label:hover, select:hover {
+        cursor: pointer;
+      }
+
+      /* END: Template CSS (DO NOT ALTER/REMOVE) ------------- */
+
+      /* INSERT INTERNAL CSS HERE */
+      div {
+        font-family: Arial;
+        font-size: 14px;
+      }
+
+      .row-margin {
+        margin: 20px;
+      }
+
+      .rounding-effect {
+        border-radius: 5px;
+      }
+      
+      input[type="text"]{
+        background-color: #fffff9;
+        padding: 5px;
+        border: 1px dotted #404040;
+      }
+
+      input {
+        font-family: Arial;
+        font-size: 13px;
+      }
+
+    </style>
+  </head>
+  <body>
+    <h1>DPIT128: Assignment 2</h1>
+    <h2>Andre Cid Cabase (1121765)</h2>
+    <h3>Date Due: 24/07/2026</h3>
+    <hr>
+    <p style="font-weight: bold;">
+      I have viewed the College&apos;s policy regarding Academic Integrity as provided at the following URL:<br>
+      <a href="https://www.uowcollege.edu.au/site-assets/uow-college-australia/documents/policies-and-procedures/Academic-Integrity-and-Student-Conduct-Policy-PDF.pdf" target="_blank">
+        https://www.uowcollege.edu.au/site-assets/uow-college-australia/documents/policies-and-procedures/Academic-Integrity-and-Student-Conduct-Policy-PDF.pdf
+      </a>
+    </p>
+    <hr>
+    <h2>Task 1</h2>
+
+    <!-- BEGIN: Task 1 Solution -->
+
+    <!--Youtube search engine-->
+    <div class="container rounding-effect" style="background-color: #ffffff;">
+      <form action="https://www.youtube.com/results" method="get" target="_blank">
+        <div class="row-margin" style="margin-bottom: 35px;">
+          <img src="https://mywebspace.net.au/UOWC128/assignment_2/images/task_1.png" alt="Youtube logo" style="width: 200px; height: auto;">
+        </div>
+
+        <div class="row-margin">
+          <div class="field-label">
+            <label for="search_query">Search Terms:</label>
+          </div>  
+          <input type="text" id="search_query" name="search_query" class="rounding-effect" placeholder="Please enter search terms here..." style="width: 350px;" required autofocus>
+          <input type="submit" value="Submit" class="rounding-effect" style="margin-left: 10px; margin-right: 10px;">
+          <input type="reset" class="rounding-effect" value="Reset">
+        </div>
+
+      </form>
+    </div>
+
+    <!-- END: Task 1 Solution -->
+
+    <p>&copy; Andre Cid Cabase</p>
+  </body>
+</html>
