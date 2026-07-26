@@ -45,40 +45,60 @@
       }
       /* END: Template CSS (DO NOT ALTER/REMOVE) ------------- */
 
+      /* BEGIN: INTERNAL CSS (Task 3 requirements) */
+      /* main div font/size must be specified internally using a type selector */
       div {
         font-family: Arial, sans-serif;
         font-size: 14px;
       }
 
+      /* apply Arial and 13px to inputs and selects (internal) */
       input, select {
         font-family: Arial, sans-serif;
         font-size: 13px;
       }
 
+      /* background, padding and border for all input controls using an attribute selector */
       input[type] {
         background-color: #fffff9;
         padding: 5px;
         border: 1px dotted #404040;
       }
 
-      input[type="search"] {
-        background-color: #fffff9;
-        padding: 5px;
-        border: 1px dotted #404040;
-        margin-right: 10px;
-      }
-
+      /* class selector for 5px rounding effect */
       .round {
         border-radius: 5px;
       }
 
+      /* class selector to apply 20px margin to image and form sections (internal) */
       .box-margin {
         margin: 20px;
       }
 
-      .button-spacing {
-        margin-right: 10px;
+      /* small spacing between search field and submit button */
+      input[type="search"] {
+        margin-right: 8px;
       }
+
+      /* ensure submit button has spacing to the reset button and stays visually stable on hover */
+      input[type="submit"] {
+        margin-right: 10px;
+        display: inline-block;
+        vertical-align: middle;
+      }
+
+      input[type="reset"] {
+        display: inline-block;
+        vertical-align: middle;
+      }
+
+      /* do not change padding on hover so buttons don't shift */
+      input[type="reset"]:hover,
+      input[type="submit"]:hover,
+      select:hover {
+        cursor: pointer;
+      }
+      /* END: INTERNAL CSS */
     </style>
   </head>
   <body>
@@ -87,7 +107,7 @@
     <h3>Date Due: 24/07/2026</h3>
     <hr>
     <p style="font-weight: bold;">
-      I have viewed the College&apos;s policy regarding Academic Integrity as provided at the following URL:<br>
+      I have viewed the College's policy regarding Academic Integrity as provided at the following URL:<br>
       <a href="https://www.uowcollege.edu.au/site-assets/uow-college-australia/documents/policies-and-procedures/Academic-Integrity-and-Student-Conduct-Policy-PDF.pdf" target="_blank">
         https://www.uowcollege.edu.au/site-assets/uow-college-australia/documents/policies-and-procedures/Academic-Integrity-and-Student-Conduct-Policy-PDF.pdf
       </a>
@@ -119,7 +139,7 @@
           required
           class="round"
         >
-        <input type="submit" value="Submit" class="round button-spacing">
+        <input type="submit" value="Submit" class="round">
         <input type="reset" value="Reset" class="round">
 
         <div style="margin-top: 15px;">

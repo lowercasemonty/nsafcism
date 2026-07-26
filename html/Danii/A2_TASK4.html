@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>DPIT128: Assignment 2 (Task 4)</title>
+    <style>
+      /* BEGIN: Template CSS (DO NOT ALTER/REMOVE) */
+      .container {
+        border: 1px dotted #404040;
+        box-shadow: 5px 5px 5px #808080;
+        margin-bottom: 30px;
+        margin-left: auto;
+        margin-right: auto;
+        text-align: left;
+        width: 665px;
+      }
+
+      .field-label {
+        float: left;
+        line-height: 27px;
+        width: 110px;
+      }
+
+      body {
+        background-color: #ededed;
+        text-align: center;
+      }
+
+      input:focus, select:focus, textarea:focus {
+        box-shadow: 0px 0px 1px 1px #99c65c;
+        outline: none;
+      }
+
+      input[type="reset"], input[type="submit"], label {
+        height: 25px;
+        width: 60px;
+      }
+
+      input[type="reset"], input[type="submit"], select {
+        border: 1px dotted #404040;
+      }
+
+      input[type="reset"]:hover, input[type="submit"]:hover, label:hover, select:hover {
+        cursor: pointer;
+      }
+      /* END: Template CSS */
+
+      /* BEGIN: INTERNAL CSS (Task 4) */
+      /* main div font/size specified internally using a type selector */
+      div {
+        font-family: Arial, sans-serif;
+        font-size: 14px;
+      }
+
+      /* Arial and 13px for input/select/textarea */
+      input, select, textarea {
+        font-family: Arial, sans-serif;
+        font-size: 13px;
+      }
+
+      /* background, padding and border for input/select/textarea using an attribute selector included */
+      input[type], select, textarea {
+        background-color: #fffff9;
+        padding: 5px;
+        border: 1px dotted #404040;
+      }
+
+      /* rounding effect (5px) specified internally using a class selector */
+      .round {
+        border-radius: 5px;
+      }
+
+      /* margin of 20px applied to image and form sections using a class selector */
+      .spacing {
+        margin: 20px;
+      }
+
+      /* small spacing between text inputs and buttons; keep hover stable */
+      input[type="text"], input[type="email"] {
+        margin-right: 10px;
+      }
+
+      input[type="submit"] {
+        margin-right: 10px;
+        display: inline-block;
+        vertical-align: middle;
+      }
+
+      input[type="reset"] {
+        display: inline-block;
+        vertical-align: middle;
+      }
+
+      input[type="reset"]:hover,
+      input[type="submit"]:hover,
+      select:hover,
+      textarea:hover {
+        cursor: pointer;
+      }
+      /* END: INTERNAL CSS */
+    </style>
+  </head>
+  <body>
+    <h1>DPIT128: Assignment 2</h1>
+    <h2>Daniil Azakishi 1414598</h2>
+    <h3>Date Due: 24/07/2026</h3>
+    <hr>
+    <p style="font-weight: bold;">
+      I have viewed the College's policy regarding Academic Integrity as provided at the following URL:<br>
+      <a href="https://www.uowcollege.edu.au/site-assets/uow-college-australia/documents/policies-and-procedures/Academic-Integrity-and-Student-Conduct-Policy-PDF.pdf" target="_blank">
+        https://www.uowcollege.edu.au/site-assets/uow-college-australia/documents/policies-and-procedures/Academic-Integrity-and-Student-Conduct-Policy-PDF.pdf
+      </a>
+    </p>
+    <hr>
+    <h2>Task 4</h2>
+
+    <!-- BEGIN: Task 4 Solution -->
+    <div class="container round" style="background-color: #f9fff9;">
+      <img
+        class="spacing"
+        src="https://mywebspace.net.au/UOWC128/assignment_2/images/task_4.png"
+        alt="Task 4 image"
+        style="width: 240px; height: auto;"
+      >
+
+      <form class="spacing" action="https://mywebspace.net.au/UOWC128/assignment_2/php/task_4.php" method="post" target="_blank">
+        <div style="margin-bottom:12px;">
+          <label class="field-label" for="full-name">Full Name</label>
+          <input type="text" id="full-name" name="full-name" class="round" style="width: 350px;" placeholder="Enter your full name" required>
+        </div>
+
+        <div style="margin-bottom:12px;">
+          <label class="field-label" for="email-address">Email Address</label>
+          <input type="email" id="email-address" name="email-address" class="round" style="width: 350px;" placeholder="you@example.com" required>
+        </div>
+
+        <div style="margin-bottom:12px;">
+          <label class="field-label" for="services">Services</label>
+          <select id="services" name="services[]" class="round" multiple size="4" style="min-width:250px;">
+            <option value="consulting">Consulting</option>
+            <option value="designing">Designing</option>
+            <option value="implementation">Implementation</option>
+            <option value="testing">Testing</option>
+          </select>
+        </div>
+
+        <div style="margin-bottom:12px;">
+          <label class="field-label" for="comments">Comments</label>
+          <textarea id="comments" name="comments" class="round" rows="5" cols="50" placeholder="Enter your comments here..."></textarea>
+        </div>
+
+        <div style="margin-top:10px;">
+          <input type="submit" value="Submit" class="round">
+          <input type="reset" value="Reset" class="round">
+        </div>
+      </form>
+    </div>
+    <!-- END: Task 4 Solution -->
+
+    <p>&copy; Daniil Azakishi</p>
+  </body>
+</html>
